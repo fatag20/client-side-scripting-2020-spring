@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+body {
+    background-color: gray;
+    font-family: 'Press Start 2P', 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+#board {
+    position: absolute;
+    right: calc(50% - 15em);
+    top: calc(55% - 15em);
+    background-color: lightgrey;
+    height: 30em;
+    width: 30em;
+    display: grid;
+}
+
+.square {
+    background-image: url("/images/square.png");
+    background-size: cover;
+}
+
+.flag {
+    background-image: url("/images/flag.png");
+}
+
+.opened {
+    background-image: none;
+    background-color: rgb(194, 194, 194);
+    outline: 2px solid gray;
+    /* outline puts the line on the inside as opposed to border */
+}
+
+.mine {
+    background-image: url("/images/mine.png");
+}
+
+.lost {
+    background-color: red;
+}
+
+.won {
+    background-color: green;
+}
+
+#board p {
+    line-height: 0;
+    position: relative;
+    margin: 0%;
+    top: 50%;
+}

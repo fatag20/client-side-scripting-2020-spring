@@ -59,8 +59,6 @@ function mapVisibility(bool)
     return "hidden";
 }
 
-window.setInterval(update, 66);
-
 function handleKeyPress(event)
 {
     if (event.code === "ArrowUp")
@@ -71,6 +69,9 @@ function handleKeyPress(event)
         player.moveDown();
     else if (event.code === "ArrowLeft")
         player.moveLeft();
+
+    update();
 }
 
 document.addEventListener('keydown', handleKeyPress);
+update();

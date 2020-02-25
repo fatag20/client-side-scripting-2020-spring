@@ -22,9 +22,9 @@ money = {
     available: true
 };
 
-const playerElement = document.getElementById("player");
-const moneyElement = document.getElementById("money");
-const scoreElement = document.getElementById("score");
+playerElement = document.getElementById("player");
+moneyElement = document.getElementById("money");
+scoreElement = document.getElementById("score");
 
 function update()
 {
@@ -73,5 +73,5 @@ function handleKeyPress(event)
     update();
 }
 
-document.addEventListener('keydown', handleKeyPress);
+document.addEventListener("keydown", handleKeyPress);
 update();

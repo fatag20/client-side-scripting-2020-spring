@@ -1,0 +1,8 @@
+.drummerAnimation {
+    animation: drummer 0.75s linear infinite alternate;
+}
+
+@keyframes drummer {
+    from { transform: rotate(5deg); }
+    to { transform: rotate(-5deg); }
+}

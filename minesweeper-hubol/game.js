@@ -1,3 +1,6 @@
+const width = 10;
+const height = 10;
+
 // Our "domain" objects, they are simple objects that implement the logic without worrying about presentation
 class Game
 {
@@ -60,7 +63,7 @@ class Game
         {
             for (let j = -1; j <= 1; j++ )
             {
-                const cell = getCell(x + i, y, + j);
+                const cell = this.getCell(x + i, y + j);
                 if (cell !== undefined && cell.containsMine)
                     count++;
             }
@@ -88,21 +91,24 @@ class Cell
 
     flag()
     {
+        if (this.opened)
+            return;
+        
         this.flagged = !this.flagged;
     }
 
     open()
     {
         this.opened = true;
+        this.flagged = false;
     }
 }
 
 class GameOver
 {
-    constructor(mineWasDetonated, finalScore)
+    constructor(mineWasDetonated)
     {
         this.mineWasDetonated = mineWasDetonated;
-        this.finalScore = finalScore;
     }
 }
 
@@ -165,9 +171,125 @@ function createRandomIntSet(exclusiveMaximum, count)
     return set;
 }
 
-const game = new Game(10, 10, 10);
-console.log(game);
-game.flag(0, 0);
-game.flag(1, 1);
-game.flag(2, 2);
-console.log(game);
+// Presentation below
+
+const boardSectionElement = document.getElementById("board");
+
+let game = new Game(width, height, 10);
+
+function startGame()
+{
+    game.reset(width, height, 10);
+    render();
+}
+
+function onResetButton()
+{
+    startGame();
+}
+
+function onCellRightClicked(x, y)
+{
+    game.flag(x, y);
+    render();
+}
+
+function onCellLeftClicked(x, y)
+{
+    game.open(x, y);
+    render();
+}
+
+function createCellElement(x, y)
+{
+    const cell = game.getCell(x, y);
+    const cellElement = document.createElement("div");
+    cellElement.classList.add("cell");
+
+    if (game.isGameOver() && cell.containsMine)
+    {
+        cellElement.classList.add("mine");
+        return cellElement;
+    }
+
+    if (!cell.opened)
+    {
+        if (cell.flagged)
+        {
+            cellElement.classList.add("flag");
+        }
+        else
+        {
+            cellElement.classList.add("block");
+        }
+    }
+    else
+    {
+        const numberOfNeighborMines = game.getNumberOfMinesIn3x3(x, y);
+        if (numberOfNeighborMines > 0)
+        {
+            const numberClassName = toNumberClassName(numberOfNeighborMines);
+            cellElement.classList.add(numberClassName);
+        }
+    }
+
+    return cellElement;
+}
+
+const rightButton = 2;
+const leftButton = 0;
+
+function render()
+{
+    boardSectionElement.innerHTML = "";
+    boardSectionElement.style.display = "grid";
+    boardSectionElement.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
+
+    for (let y = 0; y < height; y++)
+    {
+        for (let x = 0; x < width; x++)
+        {
+            let cellElement = createCellElement(x, y);
+
+            cellElement.addEventListener("mousedown", event =>
+            {
+                if (event.button == rightButton)
+                {
+                    onCellRightClicked(x, y);
+                }
+                else if (event.button == leftButton)
+                {
+                    onCellLeftClicked(x, y);
+                }
+            });
+
+            boardSectionElement.appendChild(cellElement);
+        }   
+    }
+}
+
+function toNumberClassName(number)
+{
+    switch (number)
+    {
+        case 1:
+            return "one";
+        case 2:
+            return "two";
+        case 3:
+            return "three";
+        case 4:
+            return "four";
+        case 5:
+            return "five";
+        case 6:
+            return "six";
+        case 7:
+            return "seven";
+        case 8:
+            return "eight";
+        
+    }
+}
+
+startGame();

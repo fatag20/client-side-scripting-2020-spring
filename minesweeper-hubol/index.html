@@ -3,12 +3,14 @@
 
 <head>
     <title>Minesweeper</title>
-    <script src="game.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body oncontextmenu="return false;">
+    <button id="reset" onclick="onResetButton()">Reset</button>
     <!--oncontextmenu="return false;" stops menu from right click-->
-    
+    <section id="board"></section>
+    <script src="game.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,61 @@
+.cell {
+    background-size: fit;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.block {
+    background-image: url("art/block.svg");
+}
+
+.flag {
+    background-image: url("art/flag.svg");
+}
+
+.mine {
+    background-image: url("art/mine.svg");
+}
+
+.one {
+    background-image: url("art/one.svg");
+}
+
+.two {
+    background-image: url("art/two.svg");
+}
+
+.three {
+    background-image: url("art/three.svg");
+}
+
+.four {
+    background-image: url("art/four.svg");
+}
+
+.five {
+    background-image: url("art/five.svg");
+}
+
+.six {
+    background-image: url("art/six.svg");
+}
+
+.seven {
+    background-image: url("art/seven.svg");
+}
+
+.eight {
+    background-image: url("art/eight.svg");
+}
+
+#board {
+    height: 90vmin;
+    width: 90vmin;
+    display: grid;
+    grid-gap: 0.2vmin;
+    margin: auto;
+}
+
+body {
+    background-color: red;
+}

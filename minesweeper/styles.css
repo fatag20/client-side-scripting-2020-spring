@@ -16,12 +16,12 @@ body {
 }
 
 .square {
-    background-image: url("/images/square.png");
+    background-image: url("images/square.png");
     background-size: cover;
 }
 
 .flag {
-    background-image: url("/images/flag.png");
+    background-image: url("images/flag.png");
 }
 
 .opened {
@@ -32,7 +32,7 @@ body {
 }
 
 .mine {
-    background-image: url("/images/mine.png");
+    background-image: url("images/mine.png");
 }
 
 .lost {

@@ -177,7 +177,7 @@ const boardSectionElement = document.getElementById("board");
 
 let game = new Game(width, height, 10);
 
-function startGame()
+function resetGame()
 {
     game.reset(width, height, 10);
     render();
@@ -185,7 +185,7 @@ function startGame()
 
 function onResetButton()
 {
-    startGame();
+    resetGame();
 }
 
 function onCellRightClicked(x, y)
@@ -292,4 +292,4 @@ function toNumberClassName(number)
     }
 }
 
-startGame();
+resetGame();

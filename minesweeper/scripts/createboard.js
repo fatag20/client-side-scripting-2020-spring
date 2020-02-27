@@ -95,14 +95,14 @@ class Board {
 
     addListeners(element, index) {
         element.squareElement.addEventListener("mousedown", event => {
-            if (event.button == rightButton) {
+            if (event.button == RIGHT) {
                 element.squareElement.classList.toggle("flag")
                 if (this.flagged.has(index)) {
                     this.flagged.delete(index)
                 } else {
                     this.flagged.add(index)
                 }
-            } else if (event.button == leftButton) {
+            } else if (event.button == LEFT) {
                 this.unopened.delete(index)
                 this.showSquare(index, element.squareElement)
             }

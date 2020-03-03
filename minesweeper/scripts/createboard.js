@@ -82,21 +82,23 @@ class Board {
         for (let i = 0; i < this.width * this.height; i++) {
             this.squares[i] = { value: 0, squareElement: this.newSquareElement() }
         }
-        this.mineSet.forEach((element) => {
-            this.findNeighbors(element).forEach((neighbor) => {
+        this.mineSet.forEach((mine) => {
+            this.findNeighbors(mine).forEach((neighbor) => {
                 this.squares[neighbor].value++
             })
         })
-        this.squares.forEach((element, index) => {
-            this.boardElement.appendChild(element.squareElement)
-            this.addListeners(element, index)
+
+        this.squares.forEach((square, index) => {
+            this.boardElement.appendChild(square.squareElement)
+            this.addListeners(square.squareElement, index)
         })
     }
 
-    addListeners(element, index) {
-        element.squareElement.addEventListener("mousedown", event => {
+    addListeners(squareElement, index) {
+        squareElement.addEventListener("mousedown", event => {
             if (event.button == RIGHT) {
-                element.squareElement.classList.toggle("flag")
+                // TODO you could enforce the max number of flags
+                squareElement.classList.toggle("flag")
                 if (this.flagged.has(index)) {
                     this.flagged.delete(index)
                 } else {
@@ -104,7 +106,7 @@ class Board {
                 }
             } else if (event.button == LEFT) {
                 this.unopened.delete(index)
-                this.showSquare(index, element.squareElement)
+                this.showSquare(index, squareElement)
             }
             this.checkWin()
         })

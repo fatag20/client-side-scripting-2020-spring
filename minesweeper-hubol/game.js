@@ -16,7 +16,9 @@ class Game
         if (this.isGameOver())
             return;
 
-        this.getCell(x, y).flag();
+        const cell = this.getCell(x, y);
+        if (cell.flagged || this.getNumberOfFlags() < this.maxNumberOfFlags)
+            cell.flag();
     }
 
     open(x, y)
@@ -41,6 +43,7 @@ class Game
         this.cellsGrid = createCellsGrid(width, height, minesCount);
         this.width = width;
         this.height = height;
+        this.maxNumberOfFlags = minesCount;
         this.gameOver = null;
     }
 
@@ -54,6 +57,11 @@ class Game
     getCell(x, y)
     {
         return this.cellsGrid.getItem(x, y);
+    }
+
+    getNumberOfFlags()
+    {
+        return this.cellsGrid.getItems().filter(cell => cell.flagged).length;
     }
 
     getNumberOfMinesIn3x3(x, y)
@@ -242,7 +250,6 @@ const leftButton = 0;
 function render()
 {
     boardSectionElement.innerHTML = "";
-    boardSectionElement.style.display = "grid";
     boardSectionElement.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
 
     for (let y = 0; y < height; y++)

@@ -1,0 +1,6 @@
+- interactive story
+  => implementation could be like changing the text on a paragraph based on button input
+- rock paper scissors
+  => 
+- clicker ???????
+- small point & click adventure

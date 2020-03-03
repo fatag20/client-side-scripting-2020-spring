@@ -1,6 +1,6 @@
 .cell {
     background-size: fit;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-position: center;
 }
 

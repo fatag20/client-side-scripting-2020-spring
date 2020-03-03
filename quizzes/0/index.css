@@ -1,0 +1,29 @@
+.paragraph {
+    background-color: red;
+}
+
+#paragraph {
+    background-color: green;
+    color: white;
+}
+
+body {
+    background-image: url(background.jpg);
+    background-size: cover;
+    background-position: 0% 10%;
+}
+
+#character {
+    transition: transform 0.1s;
+    width: 50vmin;
+}
+
+#character:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+#character:active {
+    transform: scale(0.925);
+    cursor: pointer;
+}

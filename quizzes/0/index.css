@@ -13,9 +13,20 @@ body {
     background-position: 0% 10%;
 }
 
+@keyframes example {
+    0% {background-color: red;}
+    50% {background-color: green;}
+    100% {background-color: yellow;}
+}
+
 #character {
     transition: transform 0.1s;
     width: 50vmin;
+
+    animation-name: example;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
 }
 
 #character:hover {

@@ -1,3 +1,5 @@
+/* Note: this server is already running at https://naive-guestbook.herokuapp.com/ */
+
 /* This code is, sadly, very verbose because I am afraid we might
     not be able to use any node packages in class before spring break...
     That is why I am not making you write it (-: You are free to look
@@ -7,7 +9,7 @@
 
 const http = require("http");
 
-const port = 9000;
+const port = process.env.PORT || 5000;
 let guestbook = [];
 
 function allowAnyOrigin(res)
@@ -71,6 +73,13 @@ async function handleApiResourceRequest(apiResourceRequest, res)
     }
     else if (apiResourceRequest.name === "messages" && apiResourceRequest.request.method === "GET")
     {
+        useJsonContentHeader(res);
+        res.write(JSON.stringify(guestbook));
+    }
+    else if (apiResourceRequest.name === "messages" && apiResourceRequest.request.method === "DELETE")
+    {
+	while (guestbook.length > 0)
+       	    guestbook.pop();
         useJsonContentHeader(res);
         res.write(JSON.stringify(guestbook));
     }

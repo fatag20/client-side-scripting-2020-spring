@@ -1,4 +1,4 @@
-const serverUrl = "http://localhost:9000";
+const serverUrl = "https://naive-guestbook.herokuapp.com";
 
 async function postMessage(message)
 {
